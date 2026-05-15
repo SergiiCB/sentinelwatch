@@ -270,8 +270,6 @@ Esta zona coincide con los reportes del [Servei Meteorològic de Catalunya](http
 
 ## 📄 Licencia
 
-## 📄 Licencia
-
 Este proyecto está bajo la [Licencia MIT](LICENSE.md). Consulta el archivo para más detalles.
 
 ---
