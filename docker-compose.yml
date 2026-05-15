@@ -1,0 +1,43 @@
+# ─────────────────────────────────────────────
+# Servicio PostGIS
+# ─────────────────────────────────────────────
+
+services:
+  postgis:
+    image: postgis/postgis:16-3.4   # PostgreSQL 16 + PostGIS 3.4 (versiones LTS estables)
+    container_name: deforestation_db
+    restart: unless-stopped
+
+    environment:
+      # Estas variables las leerá Docker desde tu archivo .env automáticamente.
+      # NUNCA escribas contraseñas directamente en el docker-compose.yml
+      # porque este archivo va al repositorio git.
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+      # "puerto_host:puerto_contenedor"
+      # Mapear al 5433 en el host evita conflictos si ya tienes Postgres instalado
+      # localmente en el 5432.
+      - "5433:5432"
+
+    volumes:
+      # Volumen con nombre: los datos de la BD persisten aunque pares el contenedor.
+      # Sin esto, cada 'docker compose down' borraría toda la BD.
+      - postgis_data:/var/lib/postgresql/data
+
+      # El directorio sql/ local se monta dentro del contenedor.
+      # Todo .sql aquí dentro se ejecuta automáticamente en el primer arranque.
+      - ./sql:/docker-entrypoint-initdb.d
+
+    healthcheck:
+      # Docker esperará a que Postgres responda antes de considerar el servicio "listo".
+      # Esto importa cuando en el Hito 4 añadamos más servicios que dependan de la BD.
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgis_data:   # Declaración del volumen con nombre

@@ -1,0 +1,36 @@
+# --- Entorno Virtual ---
+# Ignoramos la carpeta venv completa y cualquier cache de Python
+venv/
+__pycache__/
+*.py[cod]
+
+# --- Configuración y Secretos (CRÍTICO) ---
+# Nunca subir las credenciales reales
+.env
+# Ignoramos configuraciones específicas de tu agente local
+.continue/
+
+# --- Datos de Salida y Archivos Pesados ---
+# Ignoramos todo el contenido de la carpeta data
+data/*
+# Pero permitimos subir el .gitkeep para que la carpeta exista en el repo
+!data/.gitkeep
+
+# Bloqueo específico de archivos GeoTIFF (imágenes satelitales muy pesadas)
+*.tif
+*.tiff
+
+# --- Recursos Visuales y Logs ---
+# Bloqueamos archivos JSON de estadísticas y logs en la raíz si los hubiera
+*.json
+*.log
+
+# --- Assets (Imágenes del README) ---
+# Nos aseguramos de que la carpeta assets SI se suba
+!assets/
+
+# --- Base de Datos y Sistema ---
+# Ignoramos carpetas de datos que pueda crear Docker (volúmenes locales)
+pgdata/
+.DS_Store
+Thumbs.db
