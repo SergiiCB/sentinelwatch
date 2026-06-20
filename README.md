@@ -262,6 +262,10 @@ http://localhost:8501
 
 ## Resultados: caso de estudio Catalunya 2021–2024
 
+<p align="center">
+  <img src="data/analisis_catalunya.png" width="45%">
+</p>
+
 ### Métricas globales
 
 | Métrica | Valor |
@@ -288,6 +292,8 @@ La zona más crítica identificada por el sistema se localiza en:
 </p>
 
 Esta zona coincide con los reportes del [Servei Meteorològic de Catalunya](https://www.meteo.cat) sobre episodios de sequía prolongada en el interior de Tarragona durante 2023-2024.
+
+Para más detalles, se puede revisar el informe completo en: [Informe](data/informe_catalunya_verano_2021_vs_verano_2024_20260512_1303.md)
 
 ---
 
