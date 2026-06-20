@@ -119,14 +119,14 @@ sentinelwatch
 ├── assets/                 # RECURSOS DEL REPO (Imágenes para el README)
 ├── sql/
 │   └── init.sql            # Schema de la base de datos PostGIS
-└── data/                   # Archivos generados (excluidos del repo)
+└── data/                   # Archivos generados (algunos excluidos del repo)
     ├── verano_2021_ndvi.tif
     ├── verano_2024_ndvi.tif
     ├── ndvi_difference_2021_vs_2024.tif
     ├── analisis_catalunya.png
     ├── stats_summary.json
     ├── informe_catalunya_*.md
-    └── .gitkeep            # Permite subir la carpeta vacía a Git
+    └── .gitkeep            
 ```
 
 ---
@@ -302,7 +302,7 @@ Para más detalles, se puede revisar el informe completo en: [Informe](data/info
 - **Nuevas regiones:** modifica `AOI` en `config.py` con las coordenadas de cualquier zona del mundo
 - **Otros índices:** añade NDWI (agua), NBR (quemado) o EVI (vegetación mejorado) en `gee_extractor.py`
 - **Alertas automáticas:** programa `main.py` con cron/Task Scheduler para monitorización continua
-- **Otro modelo LLM:** cambia `LM_STUDIO_URL` y el nombre del modelo — el código es compatible con cualquier servidor OpenAI-compatible (Ollama, vLLM, etc.)
+- **Otro modelo LLM:** cambia `LM_STUDIO_URL` y el nombre del modelo - el código es compatible con cualquier servidor OpenAI-compatible (Ollama, vLLM, etc.)
 
 ---
 
