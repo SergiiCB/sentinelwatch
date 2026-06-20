@@ -1,4 +1,4 @@
-# 🛰️ SentinelWatch — Sistema de Monitorización de Vegetación con IA Soberana
+# 🛰️ SentinelWatch - Sistema de Monitorización de Vegetación con IA Soberana
 
 > Pipeline end-to-end de teledetección satelital de imágenes Sentinel-2 crudas a informes ejecutivos en lenguaje natural, con **coste cero** e **inferencia 100% local**.
 
@@ -12,7 +12,7 @@
 
 ---
 
-## 📋 Descripción del proyecto
+## Descripción del proyecto
 
 **SentinelWatch** analiza el impacto de la sequía mediterránea en la vegetación de Catalunya comparando imágenes satelitales Sentinel-2 entre dos periodos temporales. El sistema detecta automáticamente zonas de degradación significativa, las almacena como geometrías espaciales en una base de datos PostGIS y genera informes ejecutivos en lenguaje natural usando un modelo de lenguaje que se ejecuta **completamente en local**.
 
@@ -32,7 +32,7 @@
 
 ---
 
-## 🏗️ Arquitectura del pipeline
+## Arquitectura del pipeline
 
 ```mermaid
 graph LR
@@ -66,7 +66,7 @@ graph LR
 
 ---
 
-## 🔒 IA Soberana: inferencia local con LM Studio
+## IA Soberana: inferencia local con LM Studio
 
 Este proyecto implementa un patrón de **IA Soberana**: El modelo de lenguaje que genera los informes ejecutivos se ejecuta íntegramente en hardware local, sin enviar ningún dato a APIs de terceros (OpenAI, Anthropic, Google, etc.).
 
@@ -83,7 +83,7 @@ Este proyecto implementa un patrón de **IA Soberana**: El modelo de lenguaje qu
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 | Capa | Tecnología | Propósito |
 |------|-----------|-----------|
@@ -99,7 +99,7 @@ Este proyecto implementa un patrón de **IA Soberana**: El modelo de lenguaje qu
 
 ---
 
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 sentinelwatch
@@ -131,7 +131,7 @@ sentinelwatch
 
 ---
 
-## 🚀 Guía de instalación paso a paso
+## Guía de instalación paso a paso
 
 ### Prerequisitos
 
@@ -150,15 +150,23 @@ cd sentinelwatch
 
 ### 2. Crear entorno virtual e instalar dependencias
 
+Crear entorno virtual
 ```bash
 python -m venv venv
+```
 
-# Windows
+*Windows*
+```bash
 venv\Scripts\activate
+```
 
-# Linux / macOS
+*Linux / macOS*
+```bash
 source venv/bin/activate
+```
 
+Instalar dependencias
+```bash
 pip install -r requirements.txt
 ```
 
@@ -194,8 +202,15 @@ Se abrirá el navegador. Acepta los permisos con tu cuenta Google.
 
 ```bash
 docker compose up -d
-docker compose ps   # Asegúrate de que el estado sea 'Up' o 'Healthy'
 ```
+
+```bash
+docker compose ps
+```
+
+> [!NOTE]
+> Asegúrate de que el estado sea 'Up' o 'Healthy'
+
 ### 6. Diagnóstico de conexión (Recomendado)
 
 Antes de procesar datos pesados, verifica que tu autenticación con Google Earth Engine es correcta:
@@ -206,29 +221,46 @@ python test_gee_connection.py
 
 ### 7. Ejecutar el pipeline completo
 
+Hito 1: Extraer imágenes Sentinel-2 y calcular diferencia NDVI
 ```bash
-# Hito 1: Extraer imágenes Sentinel-2 y calcular diferencia NDVI
 python main.py
+```
 
-# Hito 2: Análisis estadístico y mapa de calor
+Hito 2: Análisis estadístico y mapa de calor
+
+```bash
 python analytics.py
+```
 
-# Hito 3: Vectorizar e ingestar en PostGIS
+Hito 3: Vectorizar e ingestar en PostGIS
+
+```bash
 python ingest_to_db.py
+```
 
-# Hito 4: Generar informe con LLM local
-# (Asegúrate de tener LM Studio corriendo con DeepSeek-R1-8B cargado)
+Hito 4: Generar informe con LLM local
+
+> [!NOTE]
+> Asegúrate de tener LM Studio corriendo con DeepSeek-R1-8B cargado
+
+```bash
 python report_agent.py
+```
 
-# Hito 5: Lanzar el dashboard
+Hito 5: Lanzar el dashboard
+
+```bash
 streamlit run app.py
 ```
 
 El dashboard estará disponible en `http://localhost:8501`.
 
+```bash
+http://localhost:8501
+```
 ---
 
-## 📊 Resultados: caso de estudio Catalunya 2021–2024
+## Resultados: caso de estudio Catalunya 2021–2024
 
 ### Métricas globales
 
@@ -259,7 +291,7 @@ Esta zona coincide con los reportes del [Servei Meteorològic de Catalunya](http
 
 ---
 
-## 🔄 Cómo extender el proyecto
+## Cómo extender el proyecto
 
 - **Nuevas regiones:** modifica `AOI` en `config.py` con las coordenadas de cualquier zona del mundo
 - **Otros índices:** añade NDWI (agua), NBR (quemado) o EVI (vegetación mejorado) en `gee_extractor.py`
@@ -268,18 +300,19 @@ Esta zona coincide con los reportes del [Servei Meteorològic de Catalunya](http
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la [Licencia MIT](LICENSE.md). Consulta el archivo para más detalles.
 
 ---
 
-## 👤 Autor
+## Autor
 
 **Sergi Cózar Badia** *Data Scientist.*
 
 <p align="left">
 <a href="https://linkedin.com/in/sergicb" target="blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn de Sergi" /></a>
+
 <a href="https://github.com/SergiiCB" target="blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub de Sergi" /></a>
 </p>
 

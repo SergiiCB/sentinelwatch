@@ -13,8 +13,9 @@ __pycache__/
 # --- Datos de Salida y Archivos Pesados ---
 # Ignoramos todo el contenido de la carpeta data
 data/*
-# Pero permitimos subir el .gitkeep para que la carpeta exista en el repo
-!data/.gitkeep
+# Pero permitimos subir el informe y la imagen
+!data/informe_catalunya_verano_2021_vs_verano_2024_20260512_1303.md
+!analisis_catalunya.png
 
 # Bloqueo específico de archivos GeoTIFF (imágenes satelitales muy pesadas)
 *.tif
